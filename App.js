@@ -1,20 +1,54 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import React from "react";
+
+import Home from "./src/pages/Home";
+import Fotos from "./src/pages/Fotos";
+import Cadastro from "./src/pages/Cadastro";
+import Localizacao from "./src/pages/Localizacao";
+
+const Menu = createNativeStackNavigator();
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+    return (
+        <NavigationContainer>
+            <Menu.Navigator>
+                <Menu.Screen
+                    name="Home"
+                    component={Home}
+                    options={{
+                        title: "Página Inicial",
+                        //headerStyle: {
+                        //backgroundColor: "#333",
+                        //},
+                        headerTintColor: "#020617",
+                    }}
+                />
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+                <Menu.Screen
+                    name="Fotos"
+                    component={Fotos}
+                    options={{
+                        title: "Fotos",
+                    }}
+                />
+
+                <Menu.Screen
+                    name="Cadastro"
+                    component={Cadastro}
+                    options={{
+                        title: "Cadastro",
+                    }}
+                />
+
+                <Menu.Screen
+                    name="Localização"
+                    component={Localizacao}
+                    options={{
+                        title: "Localização",
+                    }}
+                />
+            </Menu.Navigator>
+        </NavigationContainer>
+    );
+}
